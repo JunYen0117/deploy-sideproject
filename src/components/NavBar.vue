@@ -1,7 +1,7 @@
 <template>
   <!-- 桌機版 -->
     <ul class="desktop_screen list-group me-2">
-      <router-link to="/profile" class="list-group-item" aria-disabled="true">履歷</router-link>
+      <router-link to="/" class="list-group-item" aria-disabled="true">履歷</router-link>
       <router-link to="/shoppingmall" class="list-group-item">商品列表</router-link>
       <router-link to="/shoppingcart" class="list-group-item d-flex justify-content-between">
         <span>購物車</span>
@@ -29,7 +29,7 @@
     </div>
     <div class="offcanvas-body">
       <ul class="list-group container-fluid">
-        <router-link to="/profile" class="list-group-item" aria-disabled="true">履歷</router-link>
+        <router-link to="/" class="list-group-item" aria-disabled="true">履歷</router-link>
         <router-link to="/shoppingmall" class="list-group-item">商品列表</router-link>
         <router-link to="/shoppingcart" class="list-group-item d-flex justify-content-between">
           <span>購物車</span>

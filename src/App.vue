@@ -1,14 +1,13 @@
 <template>
-  <router-view></router-view>
+  <router-view/>
   <PurchaseInfo
     @purchaseLength="purchaseLength"
     @carts="getCartsData"></PurchaseInfo>
 </template>
 
 <script>
-// import emitter from '@/methods/emitter.js'
-
 export default {
+  name: 'App',
   data () {
     return {
       count: {

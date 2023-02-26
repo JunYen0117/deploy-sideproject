@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid row">
+  <div class="container-fluid row home">
     <div class="col-md-3">
       <NavBar></NavBar>
     </div>
@@ -138,6 +138,7 @@
 
 <script>
 export default {
+  name: 'Home',
   data () {
     return {
       isAvatarShow: true
