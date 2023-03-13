@@ -36,8 +36,6 @@ export default {
         clearInterval(window.time)
       }, 100)
     }
-  },
-  mounted () {
   }
 }
 </script>

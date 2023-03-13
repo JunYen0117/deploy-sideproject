@@ -9,6 +9,7 @@
       </router-link>
       <!-- <router-link to="/" class="list-group-item">訂單列表</router-link> -->
       <router-link to="/music" class="list-group-item">音樂播放器</router-link>
+      <router-link to="/weather" class="list-group-item">氣象API</router-link>
     </ul>
 
   <!-- 手機版 -->
@@ -37,6 +38,7 @@
         </router-link>
         <!-- <router-link to="/" class="list-group-item">訂單列表</router-link> -->
         <router-link to="/music" class="list-group-item">音樂播放器</router-link>
+        <router-link to="/weather" class="list-group-item">氣象API</router-link>
       </ul>
     </div>
   </div>
