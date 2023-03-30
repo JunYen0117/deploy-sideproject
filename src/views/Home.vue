@@ -76,7 +76,7 @@
               <ul class="card">
                   <h3>語言、框架</h3>
                   <li>Javascript</li>
-                  <li>Vue</li>
+                  <li>Vue3 (optionAPI, compositionAPI, router, pinia)</li>
               </ul>
               <ul class="card">
                   <h3>其他</h3>

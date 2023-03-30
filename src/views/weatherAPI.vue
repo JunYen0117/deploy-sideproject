@@ -95,12 +95,12 @@ onMounted(() => {
   <div class="col-12 col-md-9 weather_prediction">
     <section class="choose_area container d-flex mt-5">
       <select v-model="selectedCounty" class="form-select mx-2">
-        <option value="請選擇縣市" disabled>請選擇縣市</option>
+        <option value="" disabled>請選擇縣市</option>
         <option v-for="(v, i) in county" :key="`選擇縣市${i}`"
                 :value="v.code">{{ v.name }}</option>
       </select>
       <select v-model="selectedDistrict" class="form-select mx-2">
-        <option value="請選擇區域" disabled>請選擇區域</option>
+        <option value="" disabled>請選擇區域</option>
         <option v-for="(v, i) in districts" :key="`選擇區域${i}`"
                 :value="v">{{ v }}</option>
       </select>

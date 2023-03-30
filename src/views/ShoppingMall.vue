@@ -32,7 +32,7 @@
                 <h5>{{ item.price }}</h5>
               </div>
               <button type="button" class="btn btn-dark d-block w-75 mx-auto"
-                @click="addCart(item)">加入購物車</button>
+                @click="store.addCartStore(item)">加入購物車</button>
             </div>
           </div>
         </div>
@@ -47,8 +47,13 @@ import NavBar from '@/components/NavBar.vue'
 import SearchArea from '@/components/SearchArea.vue'
 import AllProducts from '@/components/AllProducts'
 import emitter from '@/methods/emitter'
+import { usePurchaseItemStore } from '@/store/usePurchaseItemStore'
 
 export default {
+  setup () {
+    // const store = usePurchaseItemStore()
+    // console.log(store.addCartStore)
+  },
   components: {
     NavBar,
     SearchArea,
@@ -56,6 +61,7 @@ export default {
   },
   data () {
     return {
+      store: usePurchaseItemStore(),
       originalProducts: [],
       temp: [],
       renderProducts: [],
@@ -80,6 +86,7 @@ export default {
       purchaseItem.count = 1
       purchaseItem.subtotal = purchaseItem.price
       emitter.emit('purchaseItem', purchaseItem)
+      // this.store.addCartStore(item)
     }
   },
   watch: {

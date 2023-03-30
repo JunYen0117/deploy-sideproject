@@ -5,7 +5,7 @@
       <router-link to="/shoppingmall" class="list-group-item">商品列表</router-link>
       <router-link to="/shoppingcart" class="list-group-item d-flex justify-content-between">
         <span>購物車</span>
-        <span v-if="myCartsLength" class="badge bg-dark rounded-circle">{{ myCartsLength }}</span>
+        <span v-if="store.allCount" class="badge bg-dark rounded-circle">{{ store.allCount }}</span>
       </router-link>
       <!-- <router-link to="/" class="list-group-item">訂單列表</router-link> -->
       <router-link to="/music" class="list-group-item">音樂播放器</router-link>
@@ -34,7 +34,7 @@
         <router-link to="/shoppingmall" class="list-group-item">商品列表</router-link>
         <router-link to="/shoppingcart" class="list-group-item d-flex justify-content-between">
           <span>購物車</span>
-          <span v-if="myCartsLength" class="badge bg-dark rounded-circle">{{ myCartsLength }}</span>
+          <span v-if="store.allCount" class="badge bg-dark rounded-circle">{{ store.allCount }}</span>
         </router-link>
         <!-- <router-link to="/" class="list-group-item">訂單列表</router-link> -->
         <router-link to="/music" class="list-group-item">音樂播放器</router-link>
@@ -47,17 +47,17 @@
 <script>
 import Offcanvas from 'bootstrap/js/dist/offcanvas'
 import emitter from '@/methods/emitter.js'
+import { usePurchaseItemStore } from '@/store/usePurchaseItemStore'
 
 export default {
   inject: ['count'],
   data () {
     return {
+      store: usePurchaseItemStore(),
       myoffcanvas: '',
       navSelected: '',
-      myCartsLength: 0
+      myCartsLength: 1
     }
-  },
-  created () {
   },
   mounted () {
     this.myoffcanvas = new Offcanvas('#offcanvasExample')

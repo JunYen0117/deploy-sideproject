@@ -4,11 +4,11 @@
       <NavBar></NavBar>
     </div>
     <div class="col-12 col-md-9">
-    <table v-if="countCart.myCarts.length !== 0" class="w-100 mt-5 table table-striped">
+    <table v-if="store.cartProducts.length !== 0" class="w-100 mt-5 table table-striped">
       <tbody>
-        <tr v-for=" item in countCart.myCarts" :key="item.product_name" class="row justify-content-between mb-2">
+        <tr v-for=" item in store.cartProducts" :key="item.product_name" class="row justify-content-between mb-2">
           <td class="col-2">
-            <span @click="delItem(item.id)"
+            <span @click="store.delProduct(item.id)"
             style="color: #ccc" class="trash fa-2x d-flex justify-content-center mx-auto">
               <font-awesome-icon class="align-self-center" icon="fa-solid fa-trash" />
             </span>
@@ -21,13 +21,13 @@
           <td class="col-6 ps-2">
             <div class="h5 md-h3">{{ item.product_name }}</div>
             <div class="d-flex mt-md-3">
-              <div @click="changeNum(item.id, 'minus')" class="num_minus bg-dark">
+              <div @click="store.minusProduct(item.id)" class="num_minus bg-dark">
                 <span class="text-center" style="color: white;">
                   <font-awesome-icon icon="fa-solid fa-minus" />
                 </span>
               </div>
               <input :value="item.count" class="num_input text-center" type="text" min="1" readonly>
-              <div @click="changeNum(item.id, 'plus')" class="num_plus bg-dark">
+              <div @click="store.plusProduct(item.id)" class="num_plus bg-dark">
                 <span class="text-center" style="color: white;">
                   <font-awesome-icon icon="fa-solid fa-plus" />
                 </span>
@@ -48,12 +48,12 @@
           <h5 class="text-end">總額：</h5>
         </td>
         <td class="col-2">
-          <h5 class="text-md-center">${{ total }}</h5>
+          <h5 class="text-md-center">${{ store.total }}</h5>
         </td>
       </tfoot>
     </table>
     <!-- 沒物品時顯示 -->
-      <div v-if="countCart.myCarts.length === 0" class="no_item">
+      <div v-if="store.cartProducts.length === 0" class="no_item">
         <figure class="cart_no_img_frame mt-5">
           <img src="@/assets/no_item_cart.png" alt="">
         </figure>
@@ -65,11 +65,13 @@
 
 <script>
 import emitter from '@/methods/emitter.js'
+import { usePurchaseItemStore } from '@/store/usePurchaseItemStore'
 
 export default {
   inject: ['count'],
   data () {
     return {
+      store: usePurchaseItemStore(),
       countCart: {
         myCartsLength: 0,
         myCarts: []
