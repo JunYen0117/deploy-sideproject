@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkmy_sideproject"]=self["webpackChunkmy_sideproject"]||[]).push([[735],{5735:function(t,n,o){o.r(n),o.d(n,{default:function(){return r}});var e=o(3396),c=o(1362),s=o(36),a={__name:"TestTest2",setup(t){const{db:n}=(0,c.r)(),o=(0,s.hJ)(n,"products");async function a(){const t=await(0,s.PL)(o);console.log(t),t.forEach((t=>{console.log(t.id,"=>",t.data())}))}return console.log(o),(t,n)=>((0,e.wg)(),(0,e.iD)("div",null,[(0,e._)("button",{onClick:a},"getdata")]))}};const u=a;var r=u}}]);
+//# sourceMappingURL=735.c42191cc.js.map

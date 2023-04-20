@@ -16,11 +16,6 @@ export default {
       }
     }
   },
-  provide () {
-    return {
-      count: this.count
-    }
-  },
   methods: {
     purchaseLength (item) {
       this.count.myCartsLength = item

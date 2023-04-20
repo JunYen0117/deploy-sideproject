@@ -15,19 +15,19 @@
           </td>
           <td class="col-2">
             <figure class="cart_img_frame">
-              <img :src="item.url[0]==='' ? `https://picsum.photos/200` : `${item.url[0]}`" alt="">
+              <img :src="item.imgUrl" alt="">
             </figure>
           </td>
           <td class="col-6 ps-2">
-            <div class="h5 md-h3">{{ item.product_name }}</div>
+            <div class="h5 md-h3">{{ item.name }}</div>
             <div class="d-flex mt-md-3">
-              <div @click="store.minusProduct(item.id)" class="num_minus bg-dark">
+              <div @click="store.minusProduct(item.newId)" class="num_minus bg-dark">
                 <span class="text-center" style="color: white;">
                   <font-awesome-icon icon="fa-solid fa-minus" />
                 </span>
               </div>
               <input :value="item.count" class="num_input text-center" type="text" min="1" readonly>
-              <div @click="store.plusProduct(item.id)" class="num_plus bg-dark">
+              <div @click="store.plusProduct(item.newId)" class="num_plus bg-dark">
                 <span class="text-center" style="color: white;">
                   <font-awesome-icon icon="fa-solid fa-plus" />
                 </span>
@@ -68,7 +68,6 @@ import emitter from '@/methods/emitter.js'
 import { usePurchaseItemStore } from '@/store/usePurchaseItemStore'
 
 export default {
-  inject: ['count'],
   data () {
     return {
       store: usePurchaseItemStore(),
@@ -110,8 +109,6 @@ export default {
     }
   },
   created () {
-    this.countCart.myCarts = this.count.myCarts
-    this.countCart.myCartsLength = this.count.myCartsLength
   }
 }
 </script>

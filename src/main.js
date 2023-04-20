@@ -7,6 +7,8 @@ import { createPinia } from 'pinia'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import * as bootstrap from 'bootstrap'
+
 import NavBar from './components/NavBar.vue'
 import PurchaseInfo, { length } from './components/PurchaseInfo.vue'
 
@@ -35,6 +37,7 @@ app.config.globalProperties.$length = {
 app.use(router)
 app.use(VueAxios, axios)
 app.use(pinia)
+app.use(bootstrap)
 app.provide('axios', app.config.globalProperties.axios)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.component('NavBar', NavBar)

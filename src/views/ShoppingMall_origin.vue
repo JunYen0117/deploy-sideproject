@@ -1,15 +1,10 @@
-<!-- 備份商品列表 -->
 <template class="body">
   <div class="container-fluid row">
     <div class="col-md-3">
       <NavBar></NavBar>
     </div>
     <div class="col-12 col-md-9 shopping_mall">
-      <SearchArea
-        :child_allProducts="this.allProducts"
-        @search="getData"
-        @filter="getData"
-      />
+      <SearchArea />
       <div ref="productsArea" class="productsArea">
         <div class="row w-100 mt-5">
           <!-- <div class="product_card col-4 p-2">
@@ -26,11 +21,11 @@
           </div> -->
           <!--  -->
           <div v-for=" (productsList) in renderProducts" :key="productsList" class="row w-100">
-            <div v-for="item in productsList" :key="item.name" class="product_card col-4 p-2">
+            <div v-for="item in productsList" :key="item.product_name" class="product_card col-4 p-2">
               <figure class="product_img_frame">
-                <img class="w-100 product_img" :src="item.imgUrl" alt="">
+                <img class="w-100 product_img" :src=" item.url[0]==='' ? `https://picsum.photos/200` : `${item.url[0]}` " alt="">
               </figure>
-              <h4 class="text-center text-truncate">{{ item.name }}</h4>
+              <h4 class="text-center text-truncate">{{ item.product_name }}</h4>
               <div>{{ item.category }}</div>
               <div class="d-flex justify-content-between">
                 <h5>NT$</h5>
@@ -44,32 +39,28 @@
       </div>
     </div>
   </div>
+  <AllProducts @products="getData"></AllProducts>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
 import SearchArea from '@/components/SearchArea.vue'
-import { storeToRefs } from 'pinia'
-import { useGetAllProducts } from '@/store/useGetAllProducts.js'
-import { usePurchaseItemStore } from '@/store/usePurchaseItemStore.js'
+import AllProducts from '@/components/AllProducts'
+import emitter from '@/methods/emitter'
+import { usePurchaseItemStore } from '@/store/usePurchaseItemStore'
 
 export default {
-  setup () {
-    const getProductStore = useGetAllProducts()
-    const { allProducts } = storeToRefs(getProductStore)
-
-    return { allProducts }
-  },
   components: {
     NavBar,
-    SearchArea
+    SearchArea,
+    AllProducts
   },
   data () {
     return {
       store: usePurchaseItemStore(),
-      originalProducts: [], // json陣列： [200多筆全筆資料]
-      temp: [], // json陣列：篩選originalProducts陣列： [40筆資料]
-      renderProducts: [], // 陣列包json陣列： [[40筆資料],[40筆資料],[40筆資料]...]
+      originalProducts: [],
+      temp: [],
+      renderProducts: [],
       renderIndex: 0,
       loadingItems: false,
       itemIndexStarter: 0,
@@ -77,45 +68,24 @@ export default {
     }
   },
   methods: {
-    // 何種情境會觸發getData函式：
-    // 1. 進入商品列表畫面：mount() -> setTimeout()
-    // 2. 搜尋功能：子元件SearchArea.vue -> searchProducts()
-    // 3. 篩選功能：子元件SearchArea.vue -> filterProducts()
-    getData (data, clearScreen) {
+    getData (data) {
+      data = JSON.parse(JSON.stringify(data))
       // console.log(data)
-
-      // 搜尋功能、篩選功能，帶有第2個參數「clearScreen」
-      // 會先清空HTML的渲染畫面
-      if (clearScreen) {
-        this.renderProducts.length = 0
-      }
-
       this.originalProducts = data
       this.temp = this.originalProducts.filter((v, i) => {
         return i >= this.itemIndexStarter && i <= this.itemIndexEnding
       })
       this.renderProducts.push(this.temp)
     },
-    getData2 (data) {
-      this.renderProducts.length = 0
-      console.log(data)
-      this.originalProducts = data
-      this.temp = this.originalProducts.filter((v, i) => {
-        return i >= this.itemIndexStarter && i <= this.itemIndexEnding
-      })
-      this.renderProducts.push(this.temp)
+    addCart (item) {
+      const purchaseItem = JSON.parse(JSON.stringify(item))
+      purchaseItem.count = 1
+      purchaseItem.subtotal = purchaseItem.price
+      emitter.emit('purchaseItem', purchaseItem)
+      // this.store.addCartStore(item)
     }
   },
   watch: {
-    // 深層監聽allProducts（從資料庫來的資料）
-    // allProducts一開始為空proxy
-    // 等資料庫送來內容後，偵測改變，執行getData()，渲染畫面
-    allProducts: {
-      handler () {
-        this.getData(this.allProducts)
-      },
-      deep: true
-    },
     originalProducts () {
       this.itemIndexStarter = 0
       this.itemIndexEnding = 39
@@ -150,7 +120,6 @@ export default {
     })
   },
   mounted () {
-    this.getData(this.allProducts)
   }
 }
 </script>

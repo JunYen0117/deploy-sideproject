@@ -210,7 +210,7 @@ a{
 }
 
 .basic_info{
-    width: 230px;
+    width: 300px;
     margin: 20px auto;
 }
 .address, .tel, .email{

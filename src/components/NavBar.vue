@@ -10,6 +10,20 @@
       <!-- <router-link to="/" class="list-group-item">訂單列表</router-link> -->
       <router-link to="/music" class="list-group-item">音樂播放器</router-link>
       <router-link to="/weather" class="list-group-item">氣象API</router-link>
+
+      <!-- bootstrap accordion -->
+      <div class="accordion accordion-flush" id="navbar_accordion">
+        <div class="accordion-item ">
+          <h2 class="accordion-header" id="navbar_accordion1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_desktop" aria-expanded="false" aria-controls="collapse_desktop">
+              後台系統
+            </button>
+          </h2>
+          <div id="collapse_desktop" class="accordion-collapse collapse" aria-labelledby="nav1" data-bs-parent="#navbar_accordion">
+            <router-link to="/addproduct" class="list-group-item">新增商品</router-link>
+          </div>
+        </div>
+      </div>
     </ul>
 
   <!-- 手機版 -->
@@ -39,6 +53,20 @@
         <!-- <router-link to="/" class="list-group-item">訂單列表</router-link> -->
         <router-link to="/music" class="list-group-item">音樂播放器</router-link>
         <router-link to="/weather" class="list-group-item">氣象API</router-link>
+
+        <!-- bootstrap accordion -->
+        <div class="accordion" id="navbar_accordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="navbar_accordion1">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_desktop" aria-expanded="false" aria-controls="collapse_desktop">
+              後台系統
+            </button>
+          </h2>
+          <div id="collapse_desktop" class="accordion-collapse collapse" aria-labelledby="nav1" data-bs-parent="#navbar_accordion">
+            <router-link to="/addproduct" class="list-group-item">新增商品</router-link>
+          </div>
+        </div>
+      </div>
       </ul>
     </div>
   </div>
@@ -50,7 +78,6 @@ import emitter from '@/methods/emitter.js'
 import { usePurchaseItemStore } from '@/store/usePurchaseItemStore'
 
 export default {
-  inject: ['count'],
   data () {
     return {
       store: usePurchaseItemStore(),
@@ -64,7 +91,18 @@ export default {
     emitter.on('purchaseLength', (myCartsLength) => {
       this.myCartsLength = myCartsLength
     })
-    this.myCartsLength = this.count.myCartsLength
+
+    // 根據路由的網址，使accordion套件，是收合起來？還是展開？
+    if (this.$route.name === 'addproduct') {
+      const accordionBtn = document.querySelectorAll('.accordion-button')
+      const accordionArea = document.querySelectorAll('.accordion-collapse')
+
+      accordionBtn[0].classList.remove('collapsed')
+      accordionBtn[1].classList.remove('collapsed')
+
+      accordionArea[0].classList.add('show')
+      accordionArea[1].classList.add('show')
+    }
   }
 }
 </script>
@@ -103,5 +141,9 @@ export default {
 .mobile_screen_btn{
   position: fixed;
   z-index: 10;
+}
+.accordion-button{
+  height: 50.9px;
+  border: 1px solid rgb(0,0,0,0.125);
 }
 </style>
