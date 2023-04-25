@@ -18,7 +18,7 @@
               <img :src="item.imgUrl" alt="">
             </figure>
           </td>
-          <td class="col-6 ps-2">
+          <td class="col-5 col-md-6 ps-2">
             <div class="h5 md-h3">{{ item.name }}</div>
             <div class="d-flex mt-md-3">
               <div @click="store.minusProduct(item.newId)" class="num_minus bg-dark">
@@ -34,7 +34,7 @@
               </div>
             </div>
           </td>
-          <td class="col-2">
+          <td class="col-3 col-md-2">
             <h5 class="price d-flex justify-content-center">
               <span class="align-self-center">
                 ${{ item.subtotal }}
@@ -44,10 +44,10 @@
         </tr>
       </tbody>
       <tfoot class="bg-light row">
-        <td class="col-10">
+        <td class="col-9 col-md-10">
           <h5 class="text-end">總額：</h5>
         </td>
-        <td class="col-2">
+        <td class="col-3 col-md-2">
           <h5 class="text-md-center">${{ store.total }}</h5>
         </td>
       </tfoot>

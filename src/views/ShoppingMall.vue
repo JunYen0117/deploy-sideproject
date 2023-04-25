@@ -37,7 +37,9 @@
                 <h5>{{ item.price }}</h5>
               </div>
               <button type="button" class="btn btn-dark d-block w-75 mx-auto"
-                @click="store.addCartStore(item)">加入購物車</button>
+                @click="goProductDetail(item.newId)">商品詳情</button>
+              <!-- <button type="button" class="btn btn-dark d-block w-75 mx-auto"
+                @click="store.addCartStore(item)">加入購物車</button> -->
             </div>
           </div>
         </div>
@@ -47,7 +49,6 @@
 </template>
 
 <script>
-import NavBar from '@/components/NavBar.vue'
 import SearchArea from '@/components/SearchArea.vue'
 import { storeToRefs } from 'pinia'
 import { useGetAllProducts } from '@/store/useGetAllProducts.js'
@@ -61,7 +62,6 @@ export default {
     return { allProducts }
   },
   components: {
-    NavBar,
     SearchArea
   },
   data () {
@@ -96,14 +96,8 @@ export default {
       })
       this.renderProducts.push(this.temp)
     },
-    getData2 (data) {
-      this.renderProducts.length = 0
-      console.log(data)
-      this.originalProducts = data
-      this.temp = this.originalProducts.filter((v, i) => {
-        return i >= this.itemIndexStarter && i <= this.itemIndexEnding
-      })
-      this.renderProducts.push(this.temp)
+    goProductDetail (id) {
+      this.$router.push(`/productdetail/${id}`)
     }
   },
   watch: {

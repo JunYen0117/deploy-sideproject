@@ -6,13 +6,15 @@
     <div class="col-12 col-md-9 music_view">
       <header class="profile_header bg-success">
           <div class="left_profile">
-              <figure class="avatar" @click="isAvatarShow = !isAvatarShow">
-                  <!-- 大頭貼*2 -->
-                  <transition>
-                    <div v-show="isAvatarShow" class="real_avatar"></div>
-                  </transition>
-                  <div class="comic_avatar"></div>
-              </figure>
+              <div class="avatar d-flex" ref="avatar" @click="moveAvatar">
+                    <!-- 大頭貼*2 -->
+                    <figure class="real_avatar_frame move_default" ref="realAvatar">
+                        <img src="@/assets/real_avatar.jpg" alt="">
+                    </figure>
+                    <figure class="comic_avatar_frame move_default">
+                        <img src="@/assets/comic_avatar3.jpg" ref="comicAvatar">
+                    </figure>
+              </div>
               <div class="basic_info">
                   <address class="address">
                       <span class="text-white">
@@ -137,12 +139,45 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue'
 export default {
   name: 'Home',
+  setup () {
+    const avatar = ref(null)
+    const realAvatar = ref(null)
+    const comicAvatar = ref(null)
+
+    function moveAvatar () {
+      const realAvatarClass = realAvatar.value.classList
+      const comicAvatarClass = comicAvatar.value.classList
+
+      // className開關：顯示move，或者move_default
+      // 這個開關改變動畫效果，請參考scss區域的move, move_default
+      if (realAvatarClass.contains('move')) {
+        realAvatarClass.remove('move')
+        comicAvatarClass.remove('move')
+        realAvatarClass.add('move_default')
+        comicAvatarClass.add('move_default')
+      } else if (realAvatarClass.contains('move_default')) {
+        realAvatarClass.add('move')
+        comicAvatarClass.add('move')
+        realAvatarClass.remove('move_default')
+        comicAvatarClass.remove('move_default')
+      }
+    }
+
+    onMounted(() => {
+    })
+    return { avatar, realAvatar, comicAvatar, moveAvatar }
+  },
   data () {
     return {
       isAvatarShow: true
     }
+  },
+  mounted () {
+    // console.log(this.avatar.textContent)
+    // console.log(this.$refs.avatar)
   }
 }
 </script>
@@ -150,18 +185,6 @@ export default {
 <style scoped lang="scss">
 a{
     display: block;
-}
-.v-leave-active,
-.v-enter-active{
-  transition: opacity 1s;
-}
-.v-enter-from,
-.v-leave-to{
-  opacity: 0;
-}
-.v-enter-to,
-.v-leave-from{
-  opacity: 1;
 }
 
 .profile_header{
@@ -184,29 +207,38 @@ a{
     overflow: hidden;
     cursor: pointer;
 }
-.real_avatar{
+.real_avatar_frame{
     width: 100%;
     height: 100%;
-    background: url(@/assets/real_avatar.png) no-repeat 50% bottom;
-    background-size: 75%;
-    background-color: white;
-    position: absolute;
-    z-index: 2;
+    flex-shrink: 0;
+    // position: absolute;
+    // z-index: 2;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
-.comic_avatar{
-    width: 105%;
-    height: 105%;
-    background: url(@/assets/comic_avatar3.jpg) no-repeat 50% 5%;
-    background-size: cover;
-    position: absolute;
-    z-index: 1;
+.move{
+  transition: 1s;
+  transform: translateX(-100%);
 }
-.none{
-    display: none;
+.move_default{
+  transition: 1s;
+  transform: translateX(0%);
 }
-.fadeout{
-    -webkit-animation: fadeout 1s forwards;
-    animation: fadeout 1s forwards;
+.comic_avatar_frame{
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    // background: url(@/assets/comic_avatar3.jpg) no-repeat 50% 5%;
+    // background-size: cover;
+    // position: absolute;
+    // z-index: 1;
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
 }
 
 .basic_info{

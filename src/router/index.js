@@ -33,6 +33,11 @@ const routes = [
     component: () => import('../views/ShoppingMall.vue')
   },
   {
+    path: '/productdetail/:id',
+    name: 'productdetail',
+    component: () => import('../views/ProductDetail.vue')
+  },
+  {
     path: '/shoppingcart',
     name: 'shoppingcart',
     component: () => import('../views/ShoppingCart.vue')

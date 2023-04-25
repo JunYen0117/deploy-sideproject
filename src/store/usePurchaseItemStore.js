@@ -5,12 +5,12 @@ export const usePurchaseItemStore = defineStore('purchaseItem', () => {
   const cartProducts = reactive([])
 
   // 加入購物車
-  const addCartStore = (item) => {
-    console.log('hi')
+  const addCartStore = (item, count, subtotal) => {
+    console.log(count, subtotal)
     const product = JSON.parse(JSON.stringify(item))
     // 增加產品數量、小計的屬性
-    product.count = 1
-    product.subtotal = product.price
+    product.count = count
+    product.subtotal = subtotal
 
     // 有無重覆購買的行為：isPurchased === -1才是新增的商品，才可以加入購物車
     const isPurchased = cartProducts.findIndex(value => value.newId === product.newId)
