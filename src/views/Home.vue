@@ -83,7 +83,7 @@
               <ul class="card">
                   <h3>其他</h3>
                   <li>Git</li>
-                  <li>MySQL</li>
+                  <li>firebase</li>
               </ul>
               <ul class="card">
                   <h3>其他專業</h3>
