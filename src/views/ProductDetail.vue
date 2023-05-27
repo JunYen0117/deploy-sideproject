@@ -49,14 +49,14 @@ a()
     <div class="col-md-3">
       <NavBar></NavBar>
     </div>
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md-9 product_detail">
       <div class="d-flex flex-column flex-md-row">
         <figure class="product_detail_img_frame">
           <img :src="product.imgUrl">
         </figure>
         <div class="product_detail_right_info">
           <div class="h4">{{ product.name }}</div>
-          <div class="h4">NT$<span class="product_detail_price text-secondary">&emsp;{{ product.price }}</span></div>
+          <div class="h4">單價NT$<span class="product_detail_price text-secondary">&emsp;{{ product.price }}</span></div>
           <div class="d-flex my-3">
               <div @click="minusProduct()" class="num_minus bg-dark">
                 <span class="text-center" style="color: white;">
@@ -88,11 +88,19 @@ a()
   span{
     display: block;
   }
+  .product_detail {
+    min-height: 100vh;
+    background-color: #ffffff;
+    background-image:  repeating-linear-gradient(45deg, #e1e1e180 25%, transparent 25%, transparent 75%, #e1e1e180 75%, #e1e1e180), repeating-linear-gradient(45deg, #e1e1e180 25%, #ffffff 25%, #ffffff 75%, #e1e1e180 75%, #e1e1e180);
+    background-position: 0 0, 23px 23px;
+    background-size: 46px 46px;
+  }
   .product_detail_img_frame{
     width: 50%;
     img{
       display: block;
       width: 75%;
+      margin: 0 auto;
     }
   }
   @media screen and (max-width: 768px) {
@@ -100,7 +108,6 @@ a()
     width: 100%;
       img{
         width: 90%;
-        margin: 0 auto;
       }
     }
   }
@@ -129,6 +136,7 @@ a()
     }
   }
   .product_description {
+    background: white;
     width: 95%;
     white-space: pre-wrap;
     box-shadow: 0 2px 10px lightgray;

@@ -46,6 +46,11 @@ const routes = [
     path: '/weather',
     name: 'weather',
     component: () => import('../views/weatherAPI.vue')
+  },
+  {
+    path: '/dashboard',
+    name: 'dashboard',
+    component: () => import('../views/DashBoard.vue')
   }
 ]
 

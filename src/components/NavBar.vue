@@ -20,6 +20,7 @@
             </button>
           </h2>
           <div id="collapse_desktop" class="accordion-collapse collapse" aria-labelledby="nav1" data-bs-parent="#navbar_accordion">
+            <router-link to="/dashboard" class="list-group-item">商品總覽</router-link>
             <router-link to="/addproduct" class="list-group-item">新增商品</router-link>
           </div>
         </div>
@@ -63,6 +64,7 @@
             </button>
           </h2>
           <div id="collapse_desktop" class="accordion-collapse collapse" aria-labelledby="nav1" data-bs-parent="#navbar_accordion">
+            <router-link to="/dashboard" class="list-group-item">商品總覽</router-link>
             <router-link to="/addproduct" class="list-group-item">新增商品</router-link>
           </div>
         </div>
@@ -93,7 +95,8 @@ export default {
     })
 
     // 根據路由的網址，使accordion套件，是收合起來？還是展開？
-    if (this.$route.name === 'addproduct') {
+    if (this.$route.name === 'addproduct' ||
+        this.$route.name === 'dashboard') {
       const accordionBtn = document.querySelectorAll('.accordion-button')
       const accordionArea = document.querySelectorAll('.accordion-collapse')
 

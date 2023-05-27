@@ -3,8 +3,8 @@
     <div class="col-md-3">
       <NavBar></NavBar>
     </div>
-    <div class="col-12 col-md-9 music_view">
-      <header class="profile_header bg-success">
+    <div class="col-12 col-md-9 resume">
+      <header class="profile_header">
           <div class="left_profile">
               <div class="avatar d-flex" ref="avatar" @click="moveAvatar">
                     <!-- 大頭貼*2 -->
@@ -187,6 +187,12 @@ a{
     display: block;
 }
 
+.resume{
+    background-image: url(@/assets/background.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
 .profile_header{
     display: flex;
     align-items: stretch;
@@ -277,7 +283,7 @@ a{
 .intro_background{
     width: 100%;
     height: 100%;
-    background: rgba(223, 221, 221, 0.547);
+    background: #56b0aea8;
   }
   .intro_background h3{
     font-size: 2rem;
@@ -328,6 +334,7 @@ a{
 }
 
 .main_skill{
+    background: rgba(255, 255, 255, 0.6);
     padding-bottom: 20px;
     margin-bottom: 20px;
     box-shadow: 0 2px 10px lightgray;
@@ -373,6 +380,7 @@ a{
 }
 
 .timeline{
+    background: rgba(255, 255, 255, 0.6);
     padding-bottom: 20px;
     margin-bottom: 20px;
     box-shadow: 0 0px 10px lightgray;

@@ -150,6 +150,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+/* .shopping_mall{
+ } */
 .productsArea{
   height: 100vh;
   .product_card{
