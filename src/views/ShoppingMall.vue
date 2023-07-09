@@ -59,6 +59,7 @@ export default {
     const getProductStore = useGetAllProducts()
     const { allProducts } = storeToRefs(getProductStore)
 
+    // allProducts是資料庫來的原始資料
     return { allProducts }
   },
   components: {
@@ -129,7 +130,7 @@ export default {
   created () {
     window.addEventListener('scroll', () => {
       const x = document.documentElement.scrollHeight
-      const y = window.pageYOffset
+      const y = window.scrollY
       const z = this.$refs.productsArea.clientHeight
       // console.log(x, y, z)
       if (x - y - z <= 50 && this.loadingItems !== true) {

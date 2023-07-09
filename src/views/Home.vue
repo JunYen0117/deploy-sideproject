@@ -174,10 +174,6 @@ export default {
     return {
       isAvatarShow: true
     }
-  },
-  mounted () {
-    // console.log(this.avatar.textContent)
-    // console.log(this.$refs.avatar)
   }
 }
 </script>

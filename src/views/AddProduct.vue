@@ -119,11 +119,11 @@ function clearInputValue () {
   imgUrl.value = '' // getURL()取得的圖片路徑
   inputFile.value = ''
 }
+
 // ---------------------------------------
 
 onMounted(() => {
   inputFile = document.querySelector('.file')
-  // textArea = document.querySelector('.text_area')
   getLatestId()
 })
 //
