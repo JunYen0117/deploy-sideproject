@@ -10,7 +10,7 @@ module.exports = {
   parserOptions: {
     parser: '@babel/eslint-parser'
   },
-  ignorePatterns: ['AllProducts.vue'],
+  ignorePatterns: ['AllProducts.vue', 'EditProduct.vue'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',

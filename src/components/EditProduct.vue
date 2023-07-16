@@ -2,7 +2,7 @@
 import { dataBase } from '@/composables/db.js'
 import { doc, updateDoc } from 'firebase/firestore'
 import { ref as firebaseRef, uploadBytes, getDownloadURL, listAll, deleteObject } from 'firebase/storage'
-import { ref, onMounted, defineExpose, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useGetOneProduct } from '@/store/useGetOneProduct'
 import Modal from 'bootstrap/js/dist/modal.js'
@@ -115,11 +115,8 @@ const saveEdit = async () => {
 onMounted(() => {
   modal = new Modal(document.querySelector('#exampleModal'))
   inputFile = document.querySelector('.file')
-})
+});
 
-function a () {
-}
-a()
 </script>
 
 <template>
