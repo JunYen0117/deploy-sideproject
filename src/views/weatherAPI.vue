@@ -48,7 +48,7 @@ watch(
 )
 
 const getData = () => {
-  axios.get(`https://opendata.cwb.gov.tw/api/v1/rest/datastore/${selectedCounty.value}?Authorization=CWB-9509B8D9-DFD6-4AA0-B576-3617F0F4A4F5`)
+  axios.get(`https://opendata.cwa.gov.tw/api/v1/rest/datastore/${selectedCounty.value}?Authorization=CWA-52A41091-A14B-4447-9151-E1EF71193E91`)
     .then((res) => {
       data = res.data.records.locations[0].location
       // selected 是用 selectedDistrict 變數，去找是哪個鄉鎮？
