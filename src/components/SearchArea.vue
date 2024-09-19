@@ -71,6 +71,7 @@
 
 <script>
 import Modal from 'bootstrap/js/dist/modal'
+import { ref } from 'vue'
 
 export default {
   props: {
@@ -95,7 +96,7 @@ export default {
       const result = products.filter(v => v.name.match(inputVal))
       // 送emit資料給商品列表頁面的getData()函式
       // result是資料內容、true是getData()第二個參數，會清空畫面
-      this.$emit('search', result, true)
+      this.$emit('search', ref(result), true)
     },
     addSelect () {
       // 增加selectTagArr陣列長度，越長，畫面上<select>標籤越多
@@ -116,7 +117,7 @@ export default {
         this.sequenceProducts(result)
         // 送emit資料給商品列表頁面的getData()函式
         // result是排序資料內容、true會賦予getData()第二個參數，會清空畫面
-        this.$emit('filter', result, true)
+        this.$emit('filter', ref(result), true)
       }
 
       // 篩選功能
@@ -124,7 +125,7 @@ export default {
         this.selectProducts(result, categoryArr, newArr)
         // 送emit資料給商品列表頁面的getData()函式
         // newArr是由result陣列跑迴圈後，篩選而得出來，請參照selectProducts()函式
-        this.$emit('filter', newArr, true)
+        this.$emit('filter', ref(newArr), true)
       }
     },
     sequenceProducts (result) {

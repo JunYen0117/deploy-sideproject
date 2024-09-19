@@ -138,42 +138,29 @@
   </div>
 </template>
 
-<script>
-import { ref, onMounted } from 'vue'
-export default {
-  name: 'Home',
-  setup () {
-    const avatar = ref(null)
-    const realAvatar = ref(null)
-    const comicAvatar = ref(null)
+<script setup>
+import { ref } from 'vue'
 
-    function moveAvatar () {
-      const realAvatarClass = realAvatar.value.classList
-      const comicAvatarClass = comicAvatar.value.classList
+const avatar = ref(null)
+const realAvatar = ref(null)
+const comicAvatar = ref(null)
 
-      // className開關：顯示move，或者move_default
-      // 這個開關改變動畫效果，請參考scss區域的move, move_default
-      if (realAvatarClass.contains('move')) {
-        realAvatarClass.remove('move')
-        comicAvatarClass.remove('move')
-        realAvatarClass.add('move_default')
-        comicAvatarClass.add('move_default')
-      } else if (realAvatarClass.contains('move_default')) {
-        realAvatarClass.add('move')
-        comicAvatarClass.add('move')
-        realAvatarClass.remove('move_default')
-        comicAvatarClass.remove('move_default')
-      }
-    }
+function moveAvatar () {
+  const realAvatarClass = realAvatar.value.classList
+  const comicAvatarClass = comicAvatar.value.classList
 
-    onMounted(() => {
-    })
-    return { avatar, realAvatar, comicAvatar, moveAvatar }
-  },
-  data () {
-    return {
-      isAvatarShow: true
-    }
+  // className開關：顯示move，或者move_default
+  // 這個開關改變動畫效果，請參考scss區域的move, move_default
+  if (realAvatarClass.contains('move')) {
+    realAvatarClass.remove('move')
+    comicAvatarClass.remove('move')
+    realAvatarClass.add('move_default')
+    comicAvatarClass.add('move_default')
+  } else if (realAvatarClass.contains('move_default')) {
+    realAvatarClass.add('move')
+    comicAvatarClass.add('move')
+    realAvatarClass.remove('move_default')
+    comicAvatarClass.remove('move_default')
   }
 }
 </script>
