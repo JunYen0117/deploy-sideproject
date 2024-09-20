@@ -45,33 +45,26 @@ a()
 </script>
 
 <template>
-  <div class="container-fluid row">
-    <div class="col-md-3">
-      <NavBar></NavBar>
-    </div>
-    <div class="col-12 col-md-9">
-      <table class="dashboard_productList_tableA">
-        <tr class="dashboard_productList_title row">
-          <th class="col-5">名稱</th>
-          <th class="col-2">單價</th>
-          <th class="col-2">種類</th>
-          <th class="col-1">編輯</th>
-          <th class="col-1">刪除</th>
-        </tr>
-      </table>
-      <table class="dashboard_productList_tableB">
-        <tr class="dashboard_productList_product row"
-          v-for="(value, index) in allProducts"
-          :key="index">
-          <td class="col-5">{{ value.name }}</td>
-          <td class="col-2 td_product_price">{{ value.price }}</td>
-          <td class="col-2 td_product_category">{{ value.category }}</td>
-          <td class="col-1 td_product_btn"><button class="btn btn-dark" @click="editProduct.showModal(); sendProduct(value)">修改</button></td>
-          <td class="col-1 td_product_btn"><button class="btn btn-danger" @click="deleteProduct(value)">刪除</button></td>
-        </tr>
-      </table>
-    </div>
-  </div>
+  <table class="dashboard_productList_tableA">
+    <tr class="dashboard_productList_title row">
+      <th class="col-5">名稱</th>
+      <th class="col-2">單價</th>
+      <th class="col-2">種類</th>
+      <th class="col-1">編輯</th>
+      <th class="col-1">刪除</th>
+    </tr>
+  </table>
+  <table class="dashboard_productList_tableB">
+    <tr class="dashboard_productList_product row"
+      v-for="(value, index) in allProducts"
+      :key="index">
+      <td class="col-5">{{ value.name }}</td>
+      <td class="col-2 td_product_price">{{ value.price }}</td>
+      <td class="col-2 td_product_category">{{ value.category }}</td>
+      <td class="col-1 td_product_btn"><button class="btn btn-dark" @click="editProduct.showModal(); sendProduct(value)">修改</button></td>
+      <td class="col-1 td_product_btn"><button class="btn btn-danger" @click="deleteProduct(value)">刪除</button></td>
+    </tr>
+  </table>
   <EditProduct ref="editProduct" />
 </template>
 

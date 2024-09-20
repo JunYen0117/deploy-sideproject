@@ -88,61 +88,54 @@ onMounted(() => {
 </script>
 
 <template>
-<div class="container-fluid row">
-  <div class="col-md-3">
-    <NavBar></NavBar>
-  </div>
-  <div class="col-12 col-md-9 weather_prediction">
-    <section class="choose_area container d-flex mt-5">
-      <select v-model="selectedCounty" class="form-select mx-2">
-        <option value="" disabled>請選擇縣市</option>
-        <option v-for="(v, i) in county" :key="`選擇縣市${i}`"
-                :value="v.code">{{ v.name }}</option>
-      </select>
-      <select v-model="selectedDistrict" class="form-select mx-2">
-        <option value="" disabled>請選擇區域</option>
-        <option v-for="(v, i) in districts" :key="`選擇區域${i}`"
-                :value="v">{{ v }}</option>
-      </select>
-    </section>
-    <section class="container my-5">
-      <h2 class="title text-secondary">溫度</h2>
-      <div class="container">
-        <ul class="d-flex weather_list p-0">
-          <li v-for="(v, i) in newWeather" :key="`天氣array${i}`" class="weather_item p-2">
-            <div class="h3 text-center text-dark">{{ v['溫度'] }}</div>
-            <div class="text-center">{{ v['天氣'] }}</div>
-            <div class="text-center">{{ v['時間'] }}</div>
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="container">
-      <h2 class="title text-secondary">降雨機率</h2>
-      <div class="container">
-        <ul class="d-flex pop6h_list p-0">
-          <li v-for="(v, i) in newPop6h" :key="`降雨機率array${i}`" class="pop6h_item p-2">
-            <circle-progress
-              class="h4"
-              :size="100"
-              :border-width="5"
-              :border-bg-width="5"
-              :is-gradient="true"
-              :gradient="{
-                angle: 90,
-                startColor: 'skyblue',
-                stopColor: 'blue'
-              }"
-              :percent="Number(v['機率'])"
-              :show-percent="true"
-            />
-            <div class="text-center">{{ v['時間'] }}</div>
-          </li>
-        </ul>
-      </div>
-    </section>
-  </div>
-</div>
+  <section class="choose_area container d-flex mt-5">
+    <select v-model="selectedCounty" class="form-select mx-2">
+      <option value="" disabled>請選擇縣市</option>
+      <option v-for="(v, i) in county" :key="`選擇縣市${i}`"
+              :value="v.code">{{ v.name }}</option>
+    </select>
+    <select v-model="selectedDistrict" class="form-select mx-2">
+      <option value="" disabled>請選擇區域</option>
+      <option v-for="(v, i) in districts" :key="`選擇區域${i}`"
+              :value="v">{{ v }}</option>
+    </select>
+  </section>
+  <section class="container my-5">
+    <h2 class="title text-secondary">溫度</h2>
+    <div class="container">
+      <ul class="d-flex weather_list p-0">
+        <li v-for="(v, i) in newWeather" :key="`天氣array${i}`" class="weather_item p-2">
+          <div class="h3 text-center text-dark">{{ v['溫度'] }}</div>
+          <div class="text-center">{{ v['天氣'] }}</div>
+          <div class="text-center">{{ v['時間'] }}</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section class="container">
+    <h2 class="title text-secondary">降雨機率</h2>
+    <div class="container">
+      <ul class="d-flex pop6h_list p-0">
+        <li v-for="(v, i) in newPop6h" :key="`降雨機率array${i}`" class="pop6h_item p-2">
+          <circle-progress
+            class="h4"
+            :size="100"
+            :border-width="5"
+            :border-bg-width="5"
+            :is-gradient="true"
+            :gradient="{
+              angle: 90,
+              startColor: 'skyblue',
+              stopColor: 'blue'
+            }"
+            :percent="Number(v['機率'])"
+            :show-percent="true"
+          />
+          <div class="text-center">{{ v['時間'] }}</div>
+        </li>
+      </ul>
+    </div>
+  </section>
 </template>
 
 <style scoped lang="scss">

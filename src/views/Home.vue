@@ -1,141 +1,136 @@
 <template>
-  <div class="container-fluid row home">
-    <div class="col-md-3">
-      <NavBar></NavBar>
-    </div>
-    <div class="col-12 col-md-9 resume">
-      <header class="profile_header">
-          <div class="left_profile">
-              <div class="avatar d-flex" ref="avatar" @click="moveAvatar">
-                    <!-- 大頭貼*2 -->
-                    <figure class="real_avatar_frame move_default" ref="realAvatar">
-                        <img src="@/assets/real_avatar.jpg" alt="">
-                    </figure>
-                    <figure class="comic_avatar_frame move_default">
-                        <img src="@/assets/comic_avatar3.jpg" ref="comicAvatar">
-                    </figure>
-              </div>
-              <div class="basic_info">
-                  <address class="address">
-                      <span class="text-white">
-                        <font-awesome-icon icon="fa-solid fa-location-dot" />
-                      </span>
-                      桃園市
-                  </address>
-                  <div class="tel">
-                      <span class="text-white">
-                        <font-awesome-icon icon="fa-solid fa-mobile" />
-                      </span>
-                      0972029732
-                  </div>
-                  <div class="email">
-                      <span class="text-white">
-                        <font-awesome-icon icon="fa-solid fa-envelope" />
-                      </span>
-                      relife12345@gmail.com
-                  </div>
-              </div>
-              <div class="other_info mb-3">
-                  <a href="https://www.facebook.com/blackrelife" target="_blank">
-                      <span class="fa-xl">
-                        <font-awesome-icon icon="fa-brands fa-facebook" />
-                          <!-- <i class="fa-brands fa-facebook fa-xl"></i> -->
-                      </span>
-                  </a>
-                  <a href="https://github.com/JunYen0117" target="_blank">
-                      <span class="fa-xl">
-                        <font-awesome-icon icon="fa-brands fa-github" />
-                      </span>
-                  </a>
-              </div>
+  <main class="resume">
+    <header class="profile_header">
+      <div class="left_profile">
+        <div class="avatar d-flex" ref="avatar" @click="moveAvatar">
+          <!-- 大頭貼*2 -->
+          <figure class="real_avatar_frame move_default" ref="realAvatar">
+            <img src="@/assets/real_avatar.jpg" alt="">
+          </figure>
+          <figure class="comic_avatar_frame move_default">
+            <img src="@/assets/comic_avatar3.jpg" ref="comicAvatar">
+          </figure>
+        </div>
+        <div class="basic_info">
+          <address class="address">
+            <span class="text-white">
+              <font-awesome-icon icon="fa-solid fa-location-dot" />
+            </span>
+            桃園市
+          </address>
+          <div class="tel">
+            <span class="text-white">
+              <font-awesome-icon icon="fa-solid fa-mobile" />
+            </span>
+            0972029732
           </div>
-          <div class="right_profile">
-              <div class="intro_background">
-                  <h3 class="">李俊彥 Li-Jun-yen</h3>
-                  <ul>
-                      <h4>近況經歷：</h4>
-                      <li>六角學院學員 | 2022中壢資策會就業班證照</li>
-                  </ul>
-                  <ul>
-                      <h4>個性描述：</h4>
-                      <li>MBTI人格測驗屬於ISTJ人格</li>
-                      <li>個性屬於文靜、細心。對於有一定程序的工作流程，熟悉了以後，就不容易犯錯</li>
-                  </ul>
-                  <p>Hello，我是俊彥。目前正在尋找，前端工程師的工作機會</p>
-              </div>
+          <div class="email">
+            <span class="text-white">
+              <font-awesome-icon icon="fa-solid fa-envelope" />
+            </span>
+            relife12345@gmail.com
           </div>
-      </header>
-      <section class="main_skill">
-          <h2 class="title text-secondary">技能</h2>
-          <div class="card_area">
-              <ul class="card">
-                  <h3>排版</h3>
-                  <li>HTML | CSS</li>
-                  <li>Scss</li>
-                  <li>RWD</li>
-                  <li>Bootstrap</li>
-              </ul>
-              <ul class="card">
-                  <h3>語言、框架</h3>
-                  <li>Javascript</li>
-                  <li>Vue3 (optionAPI, compositionAPI, router, pinia)</li>
-              </ul>
-              <ul class="card">
-                  <h3>其他</h3>
-                  <li>Git</li>
-                  <li>firebase</li>
-              </ul>
-              <ul class="card">
-                  <h3>其他專業</h3>
-                  <li>TQC中打：55字/分鐘<br>（嘸蝦米）</li>
-                  <li>TQC英打：34字/分鐘</li>
-                  <li>英文 TOEIC-695</li>
-              </ul>
+        </div>
+        <div class="other_info mb-3">
+          <a href="https://www.facebook.com/blackrelife" target="_blank">
+            <span class="fa-xl">
+              <font-awesome-icon icon="fa-brands fa-facebook" />
+              <!-- <i class="fa-brands fa-facebook fa-xl"></i> -->
+            </span>
+          </a>
+          <a href="https://github.com/JunYen0117" target="_blank">
+            <span class="fa-xl">
+              <font-awesome-icon icon="fa-brands fa-github" />
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="right_profile">
+        <div class="intro_background">
+          <h3 class="">李俊彥 Li-Jun-yen</h3>
+          <ul>
+            <h4>近況經歷：</h4>
+            <li>六角學院學員 | 2022中壢資策會就業班證照</li>
+          </ul>
+          <ul>
+            <h4>個性描述：</h4>
+            <li>MBTI人格測驗屬於ISTJ人格</li>
+            <li>個性屬於文靜、細心。對於有一定程序的工作流程，熟悉了以後，就不容易犯錯</li>
+          </ul>
+          <p>Hello，我是俊彥。目前正在尋找，前端工程師的工作機會</p>
+        </div>
+      </div>
+    </header>
+    <section class="main_skill">
+      <h2 class="title text-secondary">技能</h2>
+      <div class="card_area">
+        <ul class="card">
+          <h3>排版</h3>
+          <li>HTML | CSS</li>
+          <li>Scss</li>
+          <li>RWD</li>
+          <li>Bootstrap</li>
+        </ul>
+        <ul class="card">
+          <h3>語言、框架</h3>
+          <li>Javascript</li>
+          <li>Vue3 (optionAPI, compositionAPI, router, pinia)</li>
+        </ul>
+        <ul class="card">
+          <h3>其他</h3>
+          <li>Git</li>
+          <li>firebase</li>
+        </ul>
+        <ul class="card">
+          <h3>其他專業</h3>
+          <li>TQC中打：55字/分鐘<br>（嘸蝦米）</li>
+          <li>TQC英打：34字/分鐘</li>
+          <li>英文 TOEIC-695</li>
+        </ul>
+      </div>
+    </section>
+    <section class="timeline">
+      <h2 class="title text-secondary">經歷</h2>
+      <div class="timeline_area">
+        <div>
+          <div class="circle"></div>
+          <div class="time first_item">
+            學習 2022－至今
           </div>
-      </section>
-      <section class="timeline">
-          <h2 class="title text-secondary">經歷</h2>
-          <div class="timeline_area">
-              <div>
-                  <div class="circle"></div>
-                  <div class="time first_item">
-                  學習 2022－至今
-                  </div>
-              </div>
-              <article>
-                  <h3>六角學院學員<br>2022中壢資策會就業班</h3>
-              </article>
-              <div>
-                  <div class="circle"></div>
-                  <div class="time">
-                  工作 2021－2021
-                  </div>
-              </div>
-              <article>
-                  <h3>台灣銀行 行政助理</h3>
-              </article>
-              <div>
-                  <div class="circle"></div>
-                  <div class="time">
-                  就學 2014－2020
-                  </div>
-              </div>
-              <article>
-                  <h3>政治大學 歷史學系 碩士 肄業</h3>
-              </article>
-              <div>
-                  <div class="circle"></div>
-                  <div class="time">
-                  就學 2009－2013
-                  </div>
-              </div>
-              <article>
-                  <h3>嘉義大學 應用歷史系 學士 畢業</h3>
-              </article>
+        </div>
+        <article>
+          <h3>六角學院學員<br>2022中壢資策會就業班</h3>
+        </article>
+        <div>
+          <div class="circle"></div>
+          <div class="time">
+            工作 2021－2021
           </div>
-      </section>
-    </div>
-  </div>
+        </div>
+        <article>
+          <h3>台灣銀行 行政助理</h3>
+        </article>
+        <div>
+          <div class="circle"></div>
+          <div class="time">
+            就學 2014－2020
+          </div>
+        </div>
+        <article>
+          <h3>政治大學 歷史學系 碩士 肄業</h3>
+        </article>
+        <div>
+          <div class="circle"></div>
+          <div class="time">
+            就學 2009－2013
+          </div>
+        </div>
+        <article>
+          <h3>嘉義大學 應用歷史系 學士 畢業</h3>
+        </article>
+      </div>
+    </section>
+  </main>
 </template>
 
 <script setup>

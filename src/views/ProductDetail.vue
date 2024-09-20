@@ -40,48 +40,39 @@ const plusProduct = () => {
   count.value++
 }
 
-function a () {}
-a()
 </script>
 
 <template>
-  <div class="container-fluid row">
-    <div class="col-md-3">
-      <NavBar></NavBar>
-    </div>
-    <div class="col-12 col-md-9 product_detail">
-      <div class="d-flex flex-column flex-md-row">
-        <figure class="product_detail_img_frame">
-          <img :src="product.imgUrl">
-        </figure>
-        <div class="product_detail_right_info">
-          <div class="h4">{{ product.name }}</div>
-          <div class="h4">單價NT$<span class="product_detail_price text-secondary">&emsp;{{ product.price }}</span></div>
-          <div class="d-flex my-3">
-              <div @click="minusProduct()" class="num_minus bg-dark">
-                <span class="text-center" style="color: white;">
-                  <font-awesome-icon icon="fa-solid fa-minus" />
-                </span>
-              </div>
-              <input :value="count" class="num_input text-center" type="text" min="1" readonly>
-              <div @click="plusProduct()" class="num_plus bg-dark">
-                <span class="text-center" style="color: white;">
-                  <font-awesome-icon icon="fa-solid fa-plus" />
-                </span>
-              </div>
-            </div>
-          <button
-            @click="addCartStore(product, count, subtotal)"
-            type="button"
-            class="addCart_btn btn btn-secondary d-block">
-            加入購物車
-          </button>
+  <div class="d-flex flex-column flex-md-row">
+    <figure class="product_detail_img_frame">
+      <img :src="product.imgUrl">
+    </figure>
+    <div class="product_detail_right_info">
+      <div class="h4">{{ product.name }}</div>
+      <div class="h4">單價NT$<span class="product_detail_price text-secondary">&emsp;{{ product.price }}</span></div>
+      <div class="d-flex my-3">
+          <div @click="minusProduct()" class="num_minus bg-dark">
+            <span class="text-center" style="color: white;">
+              <font-awesome-icon icon="fa-solid fa-minus" />
+            </span>
+          </div>
+          <input :value="count" class="num_input text-center" type="text" min="1" readonly>
+          <div @click="plusProduct()" class="num_plus bg-dark">
+            <span class="text-center" style="color: white;">
+              <font-awesome-icon icon="fa-solid fa-plus" />
+            </span>
+          </div>
         </div>
-      </div>
-      <hr>
-      <div class="product_description mx-auto p-1 p-md-2 mb-2">{{ product.description }}</div>
+      <button
+        @click="addCartStore(product, count, subtotal)"
+        type="button"
+        class="addCart_btn btn btn-secondary d-block">
+        加入購物車
+      </button>
     </div>
   </div>
+  <hr>
+  <div class="product_description mx-auto p-1 p-md-2 mb-2">{{ product.description }}</div>
 </template>
 
 <style scoped lang="scss">

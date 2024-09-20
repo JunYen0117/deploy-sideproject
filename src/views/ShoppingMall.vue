@@ -1,33 +1,24 @@
-<!-- 備份商品列表 -->
-<template class="body">
-  <div class="container-fluid row">
-    <div class="col-md-3">
-      <NavBar></NavBar>
-    </div>
-    <div class="col-12 col-md-9 shopping_mall">
-      <!-- error : GetData2 傳到searcharea會出錯 -->
-      <SearchArea
-        :child_allProducts="allProducts"
-        @search="GetData2"
-        @filter="GetData2"
-      />
-      <div ref="productsArea" class="productsArea">
-        <div class="row w-100 mt-5">
-          <div v-for=" (productsList) in renderProducts" :key="productsList" class="hereloop row w-100">
-            <div v-for="item in productsList" :key="item.name" class="product_card col-4 p-2">
-              <figure class="product_img_frame">
-                <img class="w-100 product_img" :src="item.imgUrl" alt="">
-              </figure>
-              <h4 class="text-center text-truncate">{{ item.name }}</h4>
-              <div>{{ item.category }}</div>
-              <div class="d-flex justify-content-between">
-                <h5>NT$</h5>
-                <h5>{{ item.price }}</h5>
-              </div>
-              <button type="button" class="btn btn-dark d-block w-75 mx-auto"
-                @click="GoProductDetail2(item.newId)">商品詳情</button>
-            </div>
+<template>
+  <SearchArea
+    :child_allProducts="allProducts"
+    @search="GetData2"
+    @filter="GetData2"
+  />
+  <div ref="productsArea" class="productsArea">
+    <div class="row w-100 mt-5">
+      <div v-for=" (productsList) in renderProducts" :key="productsList" class="hereloop row w-100">
+        <div v-for="item in productsList" :key="item.name" class="product_card col-4 p-2">
+          <figure class="product_img_frame">
+            <img class="w-100 product_img" :src="item.imgUrl" alt="">
+          </figure>
+          <h4 class="text-center text-truncate">{{ item.name }}</h4>
+          <div>{{ item.category }}</div>
+          <div class="d-flex justify-content-between">
+            <h5>NT$</h5>
+            <h5>{{ item.price }}</h5>
           </div>
+          <button type="button" class="btn btn-dark d-block w-75 mx-auto"
+            @click="GoProductDetail2(item.newId)">商品詳情</button>
         </div>
       </div>
     </div>
@@ -52,7 +43,7 @@ export default {
     const { allProducts } = storeToRefs(getProductStore) // json陣列： [200多筆全筆資料]
     let loadingItems = ref(false)
     let temp = [] // json陣列：篩選陣列： [40筆資料]
-    let reRender = false
+    let reRender = ref(false)
     const renderProducts = reactive([]) // 陣列包json陣列： [[40筆資料],[40筆資料],[40筆資料]...]
     let renderIndex = 0
     let itemIndexStarter = 0
@@ -140,7 +131,7 @@ export default {
     //   this.$router.push(`/productdetail/${id}`)
     // }
   },
-  watch: {
+  // watch: {
     // 深層監聽allProducts（從資料庫來的資料）
     // allProducts一開始為空proxy
     // 等資料庫送來內容後，偵測改變，執行getData()，渲染畫面
@@ -165,7 +156,7 @@ export default {
     // temp () {
     //   this.renderProducts[this.renderIndex] = this.temp
     // }
-  },
+  // },
   mounted () {
     // this.getData(this.allProducts)
 

@@ -130,28 +130,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container-fluid row">
-    <div class="col-md-3">
-      <NavBar></NavBar>
-    </div>
-    <div class="col-12 col-md-9">
-      <form>
-        <label class="form-label">id</label>
-        <input :value="data.newId" type="text" class="form-control" disabled>
-        <label class="form-label">名稱</label>
-        <input v-model="data.name" type="text" class="form-control">
-        <label class="form-label">價格</label>
-        <input v-model="data.price" type="text" class="form-control">
-        <label class="form-label">種類</label>
-        <input v-model="data.category" type="text" class="form-control">
-        <label class="form-label">詳情</label>
-        <textarea v-model="data.description" class="form-control text_area" style="height: 100px"></textarea>
-        <label class="form-label">上傳圖片</label>
-        <input type="file" class="form-control file">
-      </form>
-      <div>
-        <button @click="upload" class="btn btn-dark d-block mt-3 fw-bold">上傳</button>
-      </div>
-    </div>
+  <form>
+    <label class="form-label">id</label>
+    <input :value="data.newId" type="text" class="form-control" disabled>
+    <label class="form-label">名稱</label>
+    <input v-model="data.name" type="text" class="form-control">
+    <label class="form-label">價格</label>
+    <input v-model="data.price" type="text" class="form-control">
+    <label class="form-label">種類</label>
+    <input v-model="data.category" type="text" class="form-control">
+    <label class="form-label">詳情</label>
+    <textarea v-model="data.description" class="form-control text_area" style="height: 100px"></textarea>
+    <label class="form-label">上傳圖片</label>
+    <input type="file" class="form-control file">
+  </form>
+  <div>
+    <button @click="upload" class="btn btn-dark d-block mt-3 fw-bold">上傳</button>
   </div>
 </template>

@@ -1,8 +1,8 @@
 <template>
 </template>
 <script>
-
 // 這隻檔案專案沒有用到
+
 import emitter from '@/methods/emitter.js'
 
 export default {

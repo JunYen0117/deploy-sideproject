@@ -76,7 +76,6 @@
 
 <script>
 import Offcanvas from 'bootstrap/js/dist/offcanvas'
-import emitter from '@/methods/emitter.js'
 import { usePurchaseItemStore } from '@/store/usePurchaseItemStore'
 
 export default {
@@ -84,15 +83,11 @@ export default {
     return {
       store: usePurchaseItemStore(),
       myoffcanvas: '',
-      navSelected: '',
-      myCartsLength: 1
+      navSelected: ''
     }
   },
   mounted () {
     this.myoffcanvas = new Offcanvas('#offcanvasExample')
-    emitter.on('purchaseLength', (myCartsLength) => {
-      this.myCartsLength = myCartsLength
-    })
 
     // 根據路由的網址，使accordion套件，是收合起來？還是展開？
     if (this.$route.name === 'addproduct' ||

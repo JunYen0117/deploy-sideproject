@@ -1,29 +1,17 @@
 <template>
-  <router-view/>
-  <PurchaseInfo
-    @purchaseLength="purchaseLength"
-    @carts="getCartsData"></PurchaseInfo>
+  <div class="container-fluid row">
+    <div class="col-md-3">
+      <NavBar></NavBar>
+    </div>
+    <div class="col-12 col-md-9 shopping_mall">
+      <router-view />
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'App',
-  data () {
-    return {
-      count: {
-        myCartsLength: 0,
-        myCarts: []
-      }
-    }
-  },
-  methods: {
-    purchaseLength (item) {
-      this.count.myCartsLength = item
-    },
-    getCartsData (item) {
-      this.count.myCarts = item
-    }
-  },
   watch: {
     $route () {
       // 路由url改變，清除播放器的計時
@@ -36,5 +24,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import './assets/all.scss'
+@import './assets/all.scss';
 </style>

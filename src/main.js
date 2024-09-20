@@ -10,7 +10,6 @@ import VueAxios from 'vue-axios'
 import * as bootstrap from 'bootstrap'
 
 import NavBar from './components/NavBar.vue'
-import PurchaseInfo, { length } from './components/PurchaseInfo.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
@@ -41,5 +40,4 @@ app.use(bootstrap)
 app.provide('axios', app.config.globalProperties.axios)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.component('NavBar', NavBar)
-app.component('PurchaseInfo', PurchaseInfo)
 app.mount('#app')

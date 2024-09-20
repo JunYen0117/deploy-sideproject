@@ -1,70 +1,63 @@
 <template>
-  <div class="container-fluid row">
-    <div class="col-md-3">
-      <NavBar></NavBar>
-    </div>
-    <div class="col-12 col-md-9 music_view">
-      <header class="music_header d-flex justify-content-center">
-        <h1 class="text-center">播放清單</h1>
-      </header>
-      <main class="d-flex flex-column justify-content-between">
-        <!-- 播放清單 -->
-        <section class="playlist">
-          <ul class="list-group">
-            <template v-for=" (song, index) in songs" :key="song.src">
-              <h5 @click="clickList(song, index)"
-               :data-name="song.title"
-               :data-num="index"
-               :class="(song.src == current.src) ? 'py-2 list-group-item active' : 'py-2 list-group-item'">
-              {{ song.title }}
-              </h5>
-            </template>
-          </ul>
-        </section>
-        <!-- 音樂控制器 -->
-        <section class="player pb-2">
-          <h2 class="song_title d-flex justify-content-center text-white bg-primary py-3">{{ current.title }}</h2>
-          <!--  -->
-          <div class="progress" style="background: darkgray; height: 5px;">
-            <div class="progress-bar bg-secondary"
-              role="progressbar"
-              style="height: 5px;"
-              :style="{width: CurrentTimePercentage}"
-              aria-valuenow="50"
-              aria-valuemin="0"
-              aria-valuemax="100"></div>
-          </div>
-          <div class="time my-2 text-center">
-            <span class="h6">{{ musicCurrentTime }} / </span>
-            <span class="h6">{{ musicLength }}</span>
-          </div>
-          <!-- <button @click="getDuration">hi</button> -->
-          <div class="control d-flex justify-content-center">
-            <button class="prev" @click="prev">
-              <span style="color: #1c595a">
-                <font-awesome-icon icon="fa-solid fa-backward" size="2x"/>
-              </span>
-            </button>
-            <button class="play p-3 bg-dark" v-if="!isPlaying" @click="play(current.title)">
-              <span style="color: #eee">
-                <font-awesome-icon icon="fa-solid fa-play" size="3x" />
-              </span>
-            </button>
-            <button class="pause p-3 bg-dark" v-else @click="pause">
-              <span style="color: #eee">
-                <font-awesome-icon icon="fa-solid fa-pause" size="3x"/>
-              </span>
-            </button>
-            <button class="next" @click="next">
-              <span style="color: #1c595a">
-                <font-awesome-icon icon="fa-solid fa-forward" size="2x"/>
-              </span>
-            </button>
-          </div>
-        </section>
-      </main>
-    </div>
-  </div>
+  <header class="music_header d-flex justify-content-center">
+    <h1 class="text-center">播放清單</h1>
+  </header>
+  <main class="d-flex flex-column justify-content-between">
+    <!-- 播放清單 -->
+    <section class="playlist">
+      <ul class="list-group">
+        <template v-for=" (song, index) in songs" :key="song.src">
+          <h5 @click="clickList(song, index)"
+            :data-name="song.title"
+            :data-num="index"
+            :class="(song.src == current.src) ? 'py-2 list-group-item active' : 'py-2 list-group-item'">
+          {{ song.title }}
+          </h5>
+        </template>
+      </ul>
+    </section>
+    <!-- 音樂控制器 -->
+    <section class="player pb-2">
+      <h2 class="song_title d-flex justify-content-center text-white bg-primary py-3">{{ current.title }}</h2>
+      <!--  -->
+      <div class="progress" style="background: darkgray; height: 5px;">
+        <div class="progress-bar bg-secondary"
+          role="progressbar"
+          style="height: 5px;"
+          :style="{width: CurrentTimePercentage}"
+          aria-valuenow="50"
+          aria-valuemin="0"
+          aria-valuemax="100"></div>
+      </div>
+      <div class="time my-2 text-center">
+        <span class="h6">{{ musicCurrentTime }} / </span>
+        <span class="h6">{{ musicLength }}</span>
+      </div>
+      <!-- <button @click="getDuration">hi</button> -->
+      <div class="control d-flex justify-content-center">
+        <button class="prev" @click="prev">
+          <span style="color: #1c595a">
+            <font-awesome-icon icon="fa-solid fa-backward" size="2x"/>
+          </span>
+        </button>
+        <button class="play p-3 bg-dark" v-if="!isPlaying" @click="play(current.title)">
+          <span style="color: #eee">
+            <font-awesome-icon icon="fa-solid fa-play" size="3x" />
+          </span>
+        </button>
+        <button class="pause p-3 bg-dark" v-else @click="pause">
+          <span style="color: #eee">
+            <font-awesome-icon icon="fa-solid fa-pause" size="3x"/>
+          </span>
+        </button>
+        <button class="next" @click="next">
+          <span style="color: #1c595a">
+            <font-awesome-icon icon="fa-solid fa-forward" size="2x"/>
+          </span>
+        </button>
+      </div>
+    </section>
+  </main>
 </template>
 
 <script>
