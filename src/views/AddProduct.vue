@@ -43,7 +43,7 @@ async function getLatestId () {
   try {
     const allData = await getDocs(collection(db, 'products'))
     allData.forEach((doc) => {
-      console.log(doc.data())
+      // console.log(doc.data())
       allId.push(doc.id)
     })
   } catch (error) {
