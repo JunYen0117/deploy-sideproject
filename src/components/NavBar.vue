@@ -74,35 +74,46 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Offcanvas from 'bootstrap/js/dist/offcanvas'
 import { usePurchaseItemStore } from '@/store/usePurchaseItemStore'
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
-export default {
-  data () {
-    return {
-      store: usePurchaseItemStore(),
-      myoffcanvas: '',
-      navSelected: ''
-    }
-  },
-  mounted () {
-    this.myoffcanvas = new Offcanvas('#offcanvasExample')
+const store = usePurchaseItemStore()
+const router = useRouter()
+const myoffcanvas = ref(null)
+let firstVisit = true
 
-    // 根據路由的網址，使accordion套件，是收合起來？還是展開？
-    if (this.$route.name === 'addproduct' ||
-        this.$route.name === 'dashboard') {
-      const accordionBtn = document.querySelectorAll('.accordion-button')
-      const accordionArea = document.querySelectorAll('.accordion-collapse')
-
-      accordionBtn[0].classList.remove('collapsed')
-      accordionBtn[1].classList.remove('collapsed')
-
-      accordionArea[0].classList.add('show')
-      accordionArea[1].classList.add('show')
-    }
+router.beforeEach((to, from) => {
+  if (myoffcanvas.value === null) return
+  // 首次進入網站，不執行下列1. 2.
+  if (firstVisit) {
+    firstVisit = false
+    return
   }
-}
+
+  // 1. 如果路由不是下列的位置，把accordion收合
+  if (to.path !== '/dashboard' && to.path !== '/addproduct') {
+    const accordionBtns = document.querySelectorAll('.accordion-button')
+    const accordionDetails = document.querySelectorAll('.accordion-collapse')
+
+    accordionBtns.forEach(btn => {
+      btn.classList.add('collapsed')
+      btn.setAttribute('aria-expanded', 'false')
+    })
+    accordionDetails.forEach(detail => {
+      detail.classList.remove('show')
+    })
+  }
+
+  // 2. 手機版，改變路由時，收合offcanvas
+  myoffcanvas.value.toggle()
+})
+
+onMounted(() => {
+  myoffcanvas.value = new Offcanvas('#offcanvasExample')
+})
 </script>
 
 <style lang="scss">
