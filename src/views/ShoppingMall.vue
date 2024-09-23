@@ -47,8 +47,8 @@ let itemIndexEnding =39
 const GetData2 = (data, clearScreen) => {
   loadingItems.value = true
 
-  console.log(data.value)
-  console.log(data.value.length)
+  // console.log(data.value)
+  // console.log(data.value.length)
 
   // 搜尋功能、篩選功能，帶有第2個參數「clearScreen」
   // 會先清空HTML的渲染畫面
