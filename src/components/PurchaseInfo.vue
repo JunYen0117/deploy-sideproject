@@ -4,7 +4,7 @@
 </template>
 
 <script>
-// 這隻檔案專案沒有用到
+// 這隻檔案專案沒有用到；並未安裝emitter
 import emitter from '@/methods/emitter.js'
 
 export default {

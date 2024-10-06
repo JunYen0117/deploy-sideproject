@@ -50,7 +50,11 @@
           <h3 class="">李俊彥 Li-Jun-yen</h3>
           <ul>
             <h4>近況經歷：</h4>
-            <li>六角學院學員 | 2022中壢資策會就業班證照</li>
+            <li>任職於</li>
+            <li>前端設計（切版） | 壹一壹一科技股份有限公司</li>
+            <li>熟練掌握能力</li>
+            <li>SCSS全瀏覽器樣式統一：autoprefix</li>
+            <li>RWD：畫面由大至小max-width、畫面由小至大min-width。2種模式的嚮應式</li>
           </ul>
           <ul>
             <h4>個性描述：</h4>
@@ -67,19 +71,19 @@
         <ul class="card">
           <h3>排版</h3>
           <li>HTML | CSS</li>
-          <li>Scss</li>
+          <li>SCSS</li>
           <li>RWD</li>
-          <li>Bootstrap</li>
+          <li>Bootstrap | Tailwind</li>
         </ul>
         <ul class="card">
           <h3>語言、框架</h3>
           <li>Javascript</li>
-          <li>Vue3 (optionAPI, compositionAPI, router, pinia)</li>
+          <li>Vue3</li>
         </ul>
         <ul class="card">
           <h3>其他</h3>
           <li>Git</li>
-          <li>firebase</li>
+          <li>Firebase</li>
         </ul>
         <ul class="card">
           <h3>其他專業</h3>
@@ -95,7 +99,16 @@
         <div>
           <div class="circle"></div>
           <div class="time first_item">
-            學習 2022－至今
+            工作 2023－2024
+          </div>
+        </div>
+        <article>
+          <h3>前端設計（切版）<br>壹一壹一科技股份有限公司</h3>
+        </article>
+        <div>
+          <div class="circle"></div>
+          <div class="time first_item">
+            學習 2022－2023
           </div>
         </div>
         <article>
