@@ -19,6 +19,5 @@ export const useGetAllProducts = defineStore('allProducts', () => {
       }
     )
   })()
-
   return { allProducts }
 })

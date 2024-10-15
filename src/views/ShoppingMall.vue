@@ -46,10 +46,6 @@ let itemIndexEnding =39
 
 const GetData2 = (data, clearScreen) => {
   loadingItems.value = true
-
-  // console.log(data.value)
-  // console.log(data.value.length)
-
   // 搜尋功能、篩選功能，帶有第2個參數「clearScreen」
   // 會先清空HTML的渲染畫面
   if (clearScreen) {
@@ -74,9 +70,16 @@ const GoProductDetail2 = (id) => {
 watch(reRender, () => {
   window.scrollTo(0, 0)
 })
-onMounted(() => {
-  GetData2(allProducts)
-})
+
+// 首次載入，監聽是否已從firebas取得資料
+watch(
+  () => allProducts.value.length,
+  (n, o) => {
+    console.log('n,o:', n, o)
+    GetData2(allProducts)
+  },
+  { immediate: true, once: true }
+)
 </script>
 
 <style scoped lang="scss">

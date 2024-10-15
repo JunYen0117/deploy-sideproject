@@ -83,8 +83,6 @@ export default {
   },
   emits: ['search', 'filter'],
   setup (props, { emit }) {
-    console.log('com:', props.child_allProducts)
-    console.log('com2:', emit)
     const modal = ref(null)
     const searchText = ref(null)
     // ['餐具', '抱枕', '夜燈', '擺飾', '衛浴用品', '便利小物', '沐浴用品', '精油與配件', '香水', '個人配件', '首飾', '髮飾', '3C產品', '家用電器', '書寫工具', '辦公用具', '玩偶', '玩具', '療癒小物', '日常包款', '錢包', '收納包', '旅行']
