@@ -30,9 +30,7 @@ library.add(
 
 const pinia = createPinia()
 const app = createApp(App)
-app.config.globalProperties.$length = {
-  length
-}
+
 app.use(router)
 app.use(VueAxios, axios)
 app.use(pinia)
