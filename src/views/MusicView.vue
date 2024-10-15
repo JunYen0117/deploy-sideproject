@@ -19,7 +19,6 @@
     <!-- 音樂控制器 -->
     <section class="player pb-2">
       <h2 class="song_title d-flex justify-content-center text-white bg-primary py-3">{{ current.title }}</h2>
-      <!--  -->
       <div class="progress" style="background: darkgray; height: 5px;">
         <div class="progress-bar bg-secondary"
           role="progressbar"
@@ -33,7 +32,6 @@
         <span class="h6">{{ musicCurrentTime }} / </span>
         <span class="h6">{{ musicLength }}</span>
       </div>
-      <!-- <button @click="getDuration">hi</button> -->
       <div class="control d-flex justify-content-center">
         <button class="prev" @click="prev">
           <span style="color: #1c595a">
@@ -60,134 +58,121 @@
   </main>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      test: 50 + 'px',
-      current: {
-        title: '',
-        src: ''
-      },
-      index: 0,
-      isPlaying: false,
-      isTempPause: false,
-      musicCurrentTime: '00:00',
-      CurrentTimePercentage: 0 + '%',
-      musicLength: '00:00',
-      countTime: false,
-      songs: [
-        {
-          title: 'The Gensokyo the Gods Loved',
-          src: require('@/assets/The_Gensokyo_the_Gods_Loved.mp3')
-        },
-        {
-          title: 'The Waters Cleansed',
-          src: require('@/assets/The_Waters_Cleansed.mp3')
-        },
-        {
-          title: 'Lullaby of Deserted Hell',
-          src: require('@/assets/Lullaby_of_Deserted_Hell.mp3')
-        }
-      ],
-      player: new Audio()
-    }
-  },
-  methods: {
-    //
-    getDuration () {
-      this.player.currentTime = 50
-    },
-    play () {
-      this.isPlaying = true
-      if (this.isTempPause === false) {
-        this.player.src = this.current.src
-      }
-      this.isTempPause = false
-      // 開始計時
-      clearInterval(window.time)
-      window.time = setInterval(() => {
-        // console.log(this.player.currentTime)
-        this.musicCurrentTime = Math.floor(this.player.currentTime)
-        let min = Math.floor(this.player.currentTime / 60)
-        let sec = Math.floor(this.player.currentTime % 60)
-        if (min < 10) {
-          min = '0' + min
-        }
-        if (sec < 10) {
-          sec = '0' + sec
-        }
-        this.musicCurrentTime = min + ':' + sec
-        this.CurrentTimePercentage = this.player.currentTime / this.player.duration * 100 + '%'
-      }, 300)
-      this.player.play() // 開始播放
-      this.player.onended = () => {
-        this.next()
-      }
-    },
-    pause () {
-      this.player.pause()
-      this.isPlaying = false
-      this.isTempPause = true
-      clearInterval(window.time)
-    },
-    next () {
-      this.isTempPause = false
-      this.index++
-      if (this.index > this.songs.length - 1) {
-        this.index = 0
-      }
+<script setup>
+/* eslint-disable */
+import { ref, reactive, onMounted, onBeforeUnmount, watch } from 'vue'
 
-      this.current = this.songs[this.index]
-      this.play() // 呼叫自己寫的play函式
-    },
-    prev () {
-      this.isTempPause = false
-      this.index--
-      if (this.index < 0) {
-        this.index = this.songs.length - 1
-      }
+const player = new Audio()
+const current = reactive({
+  title: '',
+  src: ''
+})
+const index = ref(0)
+const isPlaying = ref(false)
+let isTempPause = false
+const musicCurrentTime = ref('00:00')
+const CurrentTimePercentage = ref('0%')
+const musicLength = ref('00:00')
+const songs = reactive([
+  {
+    title: 'The Gensokyo the Gods Loved',
+    src: '/The_Gensokyo_the_Gods_Loved.mp3'
+  },
+  {
+    title: 'The Waters Cleansed',
+    src: '/The_Waters_Cleansed.mp3'
+  },
+  {
+    title: 'Lullaby of Deserted Hell',
+    src: '/Lullaby_of_Deserted_Hell.mp3'
+  }
+])
 
-      this.current = this.songs[this.index]
-      this.play()
-    },
-    clickList (song, index) {
-      this.isTempPause = false
-      this.current = song
-      this.index = index
-      this.play()
+const play = () => {
+  isPlaying.value = true
+  if (isTempPause === false) {
+    player.src = current.src
+  }
+  isTempPause = false
+  clearInterval(window.time)
+  window.time = setInterval(() => {
+    musicCurrentTime.value = Math.floor(player.currentTime)
+    let min = Math.floor(player.currentTime / 60)
+    let sec = Math.floor(player.currentTime % 60)
+    if (min < 10) {
+      min = '0' + min
     }
-  },
-  watch: {
-    current () {
-      this.player.oncanplay = () => {
-        this.musicLength = Math.floor(this.player.duration)
-        let min = Math.floor(this.player.duration / 60)
-        let sec = Math.floor(this.player.duration % 60)
-        if (min < 10) {
-          min = '0' + min
-        }
-        if (sec < 10) {
-          sec = '0' + sec
-        }
-        this.musicLength = min + ':' + sec
-        // min < 10 ? '0' + min : min
-        // sec < 10 ? '0' + sec : sec
-      }
+    if (sec < 10) {
+      sec = '0' + sec
     }
-  },
-  beforeRouteLeave () {
-    this.player.load() // 離開路由，關閉音樂
-    // clearInterval(window.time)
-    // console.log('clear')
-  },
-  mounted () {
-    if (this.current.title === '') {
-      this.current = this.songs[this.index]
-      this.player.src = this.current.src
-    }
+    musicCurrentTime.value = min + ':' + sec
+    CurrentTimePercentage.value = player.currentTime / player.duration * 100 + '%'
+  }, 300)
+  player.play()
+  player.onended = () => {
+    next()
   }
 }
+const pause = () => {
+  player.pause()
+  isPlaying.value = false
+  isTempPause = true
+  clearInterval(window.time)
+}
+const next = () => {
+  isTempPause = false
+  index.value += 1
+  if (index.value > songs.length -1) {
+    index.value = 0
+  }
+  current.title = songs[index.value].title
+  current.src = songs[index.value].src
+  play() // 呼叫自己寫的play函式
+}
+const prev = () => {
+  isTempPause = false
+  index.value -= 1
+  if (index.value < 0) {
+    index.value = songs.length - 1
+  }
+  current.title = songs[index.value].title
+  current.src = songs[index.value].src
+  play() // 呼叫自己寫的play函式
+}
+const clickList = (song, i) => {
+  isTempPause = false
+  current.title = song.title
+  current.src = song.src
+  index.value = i
+  play() // 呼叫自己寫的play函式
+}
+watch(
+  current,
+  () => {
+    player.oncanplay = () => {
+      musicLength.value = Math.floor(player.duration)
+      let min = Math.floor(player.duration / 60)
+      let sec = Math.floor(player.duration % 60)
+      if (min < 10) {
+        min = '0' + min
+      }
+      if (sec < 10) {
+        sec = '0' + sec
+      }
+      musicLength.value = min + ':' + sec
+    }
+  }
+)
+onMounted(() => {
+  if (current.title === '') {
+    current.title = songs[index.value].title
+    current.src = songs[index.value].src
+    player.src = current.src
+  }
+})
+onBeforeUnmount(() => {
+  player.pause() // 離開路由，關閉音樂
+})
 </script>
 
 <style scoped lang="scss">
